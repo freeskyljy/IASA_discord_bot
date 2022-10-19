@@ -8,10 +8,19 @@ import time
 
 # 필요한 것들 불러오기
 bot = commands.Bot(command_prefix='!', intents=discord.Intents.all())
-token, user_id, user_pw, link = open("temp/important_data.txt", "r").readlines()
+
+klist = open("temp/important_data.txt", "r").readlines()
+token = klist[0].strip()
+user_id = klist[1].strip()
+user_pw = klist[2].strip()
+link = klist[3].strip()
+
 today = date.today().isoformat()  # 20XX-XX-XX꼴로 출력됨
 new = []
-links = open("temp/links.txt", "r").readlines()
+links = []
+links_list = open("temp/links.txt", "r").readlines()
+for link_ in links_list:
+    links.append(link_.strip())
 subject = ['공지사항', '소집교육', '수학', '물리', '화학', '생명과학', '지구과학', '영어', '독서과제']
 
 # 스크래핑
