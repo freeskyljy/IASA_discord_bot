@@ -53,7 +53,7 @@ browser.quit()
 
 
 @bot.event
-async def on_ready():  # 봇이 시작할 때 한번 실행
+async def on_ready():  # 봇이 시작할 때 한번 실행, 비동기 배워서 나중에 손볼 예정
     await bot.change_presence(status=discord.Status.online, activity=discord.Game("작동"))  # 봇 상태 메시지 바꾸기
     for j in new:
         embed = discord.Embed(title=j[1], description=j[6], color=discord.Color.from_rgb(241, 196, 15))
