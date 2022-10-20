@@ -35,6 +35,7 @@ browser.find_element(By.ID, "usrID").send_keys(user_id)
 browser.find_element(By.ID, "usrPass").send_keys(user_pw)
 browser.find_element(By.ID, "loginbtn").click()
 time.sleep(2)
+
 # 필요한 정보만 추출
 for i in range(9):
     browser.get(links[i])
