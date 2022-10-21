@@ -4,17 +4,27 @@ from datetime import date
 from bs4 import BeautifulSoup
 import discord
 from discord.ext import commands
+import asyncio
 import time
 
 # 필요한 것들 불러오기
 bot = commands.Bot(command_prefix='!', intents=discord.Intents.all())
-token, user_id, user_pw, link = open("temp/important_data.txt", "r").readlines()
+
+klist = open("temp/important_data.txt", "r").readlines()
+token = klist[0].strip()
+user_id = klist[1].strip()
+user_pw = klist[2].strip()
+link = klist[3].strip()
+
 today = date.today().isoformat()  # 20XX-XX-XX꼴로 출력됨
 new = []
-links = open("temp/links.txt", "r").readlines()
+links = []
+links_list = open("temp/links.txt", "r").readlines()
+for link_ in links_list:
+    links.append(link_.strip())
 subject = ['공지사항', '소집교육', '수학', '물리', '화학', '생명과학', '지구과학', '영어', '독서과제']
 
-# 스크래핑
+스크래핑
 browser = webdriver.Chrome('temp/chromedriver.exe')
 browser.get(link)
 time.sleep(3)
@@ -42,6 +52,9 @@ for i in range(9):
     time.sleep(2)
 browser.quit()
 
+new = [['1', '2', '3', '4', 'https://www.naver.com', 'afsd', 'asdf', 'as']]
+asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
 
 @bot.event
 async def on_ready():  # 봇이 시작할 때 한번 실행
@@ -55,10 +68,9 @@ async def on_ready():  # 봇이 시작할 때 한번 실행
             for channel in guild.channels:
                 if isinstance(channel,
                               discord.TextChannel) and channel.name == '봇':  # 텍스트 채널, 채널 이름 확인
-                    await channel.send(embed=embed)
-    time.sleep(10)
-    exit()
+                    await bot.change_presence(status=discord.Status.online, activity=discord.Game("작동"))
+
+    await bot.close()
 
 bot.run(token)
-time.sleep(10)
-exit()
+
