@@ -36,6 +36,7 @@ browser.find_element(By.ID, "usrID").send_keys(user_id)
 browser.find_element(By.ID, "usrPass").send_keys(user_pw)
 browser.find_element(By.ID, "loginbtn").click()
 time.sleep(2)
+
 # 필요한 정보만 추출
 for i in range(9):
     browser.get(links[i])
@@ -57,7 +58,7 @@ asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 
 @bot.event
-async def on_ready():  # 봇이 시작할 때 한번 실행
+async def on_ready():  # 봇이 시작할 때 한번 실행, 비동기 배워서 나중에 손볼 예정
     await bot.change_presence(status=discord.Status.online, activity=discord.Game("작동"))  # 봇 상태 메시지 바꾸기
     for j in new:
         embed = discord.Embed(title=j[1], description=j[6], color=discord.Color.from_rgb(241, 196, 15))
