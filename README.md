@@ -9,7 +9,7 @@
 봇 이라는 이름의 텍스트 채널을 만들고 봇을 초대하세요.
 매일 오후 10시마다 그날의 공지사항을 전송합니다.
 
-봇 초대 링크:
+봇 초대 링크:(현재 사용불가)
 https://discord.com/api/oauth2/authorize?client_id=1031797362693255191&permissions=8&scope=bot
 
 # Requirements
